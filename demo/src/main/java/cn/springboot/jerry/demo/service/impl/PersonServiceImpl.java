@@ -28,8 +28,9 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void insertPerson(Person p) {
-        jdbcTemplate.update("INSERT INTO person VALUES (null, ?, ?, ?)", p.getName(), p.getAge(), p.getSex());
+    public void insert(Person p) {
+//        jdbcTemplate.update("INSERT INTO person VALUES (null, ?, ?, ?)", p.getName(), p.getAge(), p.getSex());
+        mapper.insert(p);
     }
 
     @Override
@@ -50,5 +51,15 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<Person> selectAll() {
         return mapper.selectAll();
+    }
+
+    @Override
+    public void delete(long id) {
+        mapper.delete(id);
+    }
+
+    @Override
+    public void update(Person p) {
+        mapper.update(p);
     }
 }

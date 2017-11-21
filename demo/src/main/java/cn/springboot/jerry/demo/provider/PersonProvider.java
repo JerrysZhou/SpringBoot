@@ -30,4 +30,22 @@ public class PersonProvider {
         }.toString();
     }
 
+    public String update(final Person p) {
+        return new SQL() {
+            {
+                UPDATE("person");
+                if (StrEx.notEmpty(p.getName())) {
+                    SET("name = #{name}");
+                }
+                if (p.getAge() != null) {
+                    SET("age = #{age}");
+                }
+                if (p.getSex() != null) {
+                    SET("sex = #{sex}");
+                }
+                WHERE("id = #{id}");
+            }
+        }.toString();
+    }
+
 }

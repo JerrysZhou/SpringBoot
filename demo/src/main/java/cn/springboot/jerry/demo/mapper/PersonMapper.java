@@ -29,4 +29,14 @@ public interface PersonMapper {
     Person selectById(@Param("id") long id);
 
     List<Person> selectAll();
+
+    @Delete("delete from person where id = #{id}")
+    void delete(long id);
+
+    @UpdateProvider(type = PersonProvider.class, method = "update")
+    void update(Person p);
+
+    @Insert("insert into person(name, age, sex) values (#{name}, #{age}, #{sex})")
+    @Options(useGeneratedKeys = true)
+    void insert(Person p);
 }

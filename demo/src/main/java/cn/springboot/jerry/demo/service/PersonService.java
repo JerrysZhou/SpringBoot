@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public interface PersonService  {
 
-    void insertPerson(Person p);
+    void insert(Person p);
 
     Person selectByName(String name);
 
@@ -22,4 +22,7 @@ public interface PersonService  {
 
     List<Person> selectAll();
 
+    void delete(long id);
+
+    void update(Person p);
 }
