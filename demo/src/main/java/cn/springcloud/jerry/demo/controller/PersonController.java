@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author zhoujx
  * @date 2017-11-19 23:40
@@ -44,6 +46,17 @@ public class PersonController {
     @RequestMapping(value = "/get/{name}")
     public Person getByName(@PathVariable("name") String name) {
         return service.findByName(name);
+    }
+
+    @RequestMapping(value = "/find", method = RequestMethod.GET)
+    public List<Person> find(@RequestParam(value = "name", required = false) String name,
+                             @RequestParam(value = "age", required = false) Integer age,
+                             @RequestParam(value = "sex", required = false) Integer sex) {
+//        List<Person> rst = new ArrayList<>();
+//        rst.add(service.findByName(name));
+//        return rst;
+        final Person p = new Person(name, sex, age);
+        return service.find(p);
     }
 
 }

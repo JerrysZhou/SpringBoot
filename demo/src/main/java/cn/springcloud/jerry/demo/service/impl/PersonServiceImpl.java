@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author zhoujx
  * @date 2017-11-20 23:17
@@ -28,5 +30,10 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Person findByName(String name) {
         return mapper.findByName(name);
+    }
+
+    @Override
+    public List<Person> find(Person p) {
+        return mapper.find(p);
     }
 }

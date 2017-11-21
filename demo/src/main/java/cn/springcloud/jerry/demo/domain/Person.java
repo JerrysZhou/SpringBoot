@@ -6,22 +6,22 @@ package cn.springcloud.jerry.demo.domain;
  */
 public class Person {
 
-    private long id;
+    private Long id;
     private String name;
-    private int sex;
-    private int age;
+    private Integer sex;
+    private Integer age;
 
     public Person() {
     }
 
-    public Person(long id, String name, int sex, int age) {
+    public Person(Long id, String name, Integer sex, Integer age) {
         this.id = id;
         this.name = name;
         this.sex = sex;
         this.age = age;
     }
 
-    public Person(String name, int sex, int age) {
+    public Person(String name, Integer sex, Integer age) {
         this.name = name;
         this.sex = sex;
         this.age = age;
@@ -31,7 +31,7 @@ public class Person {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -43,7 +43,7 @@ public class Person {
         this.name = name;
     }
 
-    public int getSex() {
+    public Integer getSex() {
         return sex;
     }
 
@@ -51,7 +51,7 @@ public class Person {
         this.sex = sex;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
