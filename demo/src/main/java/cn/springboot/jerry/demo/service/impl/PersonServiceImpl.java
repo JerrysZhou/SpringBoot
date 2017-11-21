@@ -6,6 +6,7 @@ import cn.springboot.jerry.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    @Transactional
     public void insert(Person p) {
 //        jdbcTemplate.update("INSERT INTO person VALUES (null, ?, ?, ?)", p.getName(), p.getAge(), p.getSex());
         mapper.insert(p);
@@ -54,11 +56,13 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    @Transactional
     public void delete(long id) {
         mapper.delete(id);
     }
 
     @Override
+    @Transactional
     public void update(Person p) {
         mapper.update(p);
     }

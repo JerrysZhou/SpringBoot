@@ -4,7 +4,6 @@ import cn.springboot.jerry.demo.domain.Person;
 import cn.springboot.jerry.demo.service.PersonService;
 import cn.springboot.jerry.demo.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +22,7 @@ public class PersonController {
     private String msg;
 
     @Autowired
-    public PersonController(@Qualifier("personServiceImpl") PersonService service) {
+    public PersonController(PersonService service) {
         this.service = service;
     }
 
