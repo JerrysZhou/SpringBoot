@@ -3,6 +3,7 @@ package cn.springboot.jerry.demo.controller;
 import cn.springboot.jerry.demo.domain.Person;
 import cn.springboot.jerry.demo.service.PersonService;
 import cn.springboot.jerry.demo.utils.Result;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,8 @@ public class PersonController {
     @Value(value = "${jerry.msg}")
     private String msg;
 
+    private static final Logger log = Logger.getLogger(PersonController.class);
+
     @Autowired
     public PersonController(PersonService service) {
         this.service = service;
@@ -36,6 +39,7 @@ public class PersonController {
     public Result list(@RequestParam(value = "name", required = false) String name,
                        @RequestParam(value = "age", required = false) Integer age,
                        @RequestParam(value = "sex", required = false) Integer sex) {
+        log.info("List Req Param: name=" + name + ",age=" + age + ",sex=" + sex);
         final Person p = new Person(name, sex, age);
         final List<Person> data = service.find(p);
         return Result.successGet(data);

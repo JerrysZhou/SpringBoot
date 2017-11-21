@@ -77,4 +77,13 @@ public class Result {
         return new Result(400, msg, null, new Date());
     }
 
+    @Override
+    public String toString() {
+        return "Result{" +
+                "status=" + status +
+                ", errorMsg='" + errorMsg + '\'' +
+                ", data=" + data +
+                ", serverTime=" + serverTime +
+                '}';
+    }
 }
