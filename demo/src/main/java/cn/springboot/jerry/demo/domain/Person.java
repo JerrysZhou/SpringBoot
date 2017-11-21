@@ -1,4 +1,4 @@
-package cn.springcloud.jerry.demo.domain;
+package cn.springboot.jerry.demo.domain;
 
 /**
  * @author zhoujx

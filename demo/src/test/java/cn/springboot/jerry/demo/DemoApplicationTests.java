@@ -1,4 +1,4 @@
-package cn.springcloud.jerry.demo;
+package cn.springboot.jerry.demo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

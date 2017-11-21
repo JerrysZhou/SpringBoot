@@ -1,4 +1,4 @@
-package cn.springcloud.jerry.demo.exception;
+package cn.springboot.jerry.demo.exception;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,6 +1,6 @@
-package cn.springcloud.jerry.demo.advice;
+package cn.springboot.jerry.demo.advice;
 
-import cn.springcloud.jerry.demo.exception.MyBusinessException;
+import cn.springboot.jerry.demo.exception.MyBusinessException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

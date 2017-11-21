@@ -1,4 +1,4 @@
-package cn.springcloud.jerry.demo.utils;
+package cn.springboot.jerry.demo.utils;
 
 /**
  * @author zhoujx

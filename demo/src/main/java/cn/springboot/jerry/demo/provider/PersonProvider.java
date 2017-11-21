@@ -1,7 +1,7 @@
-package cn.springcloud.jerry.demo.provider;
+package cn.springboot.jerry.demo.provider;
 
-import cn.springcloud.jerry.demo.domain.Person;
-import cn.springcloud.jerry.demo.utils.StrEx;
+import cn.springboot.jerry.demo.domain.Person;
+import cn.springboot.jerry.demo.utils.StrEx;
 import org.apache.ibatis.jdbc.SQL;
 
 /**

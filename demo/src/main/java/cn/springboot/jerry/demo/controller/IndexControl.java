@@ -1,4 +1,4 @@
-package cn.springcloud.jerry.demo.controller;
+package cn.springboot.jerry.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
