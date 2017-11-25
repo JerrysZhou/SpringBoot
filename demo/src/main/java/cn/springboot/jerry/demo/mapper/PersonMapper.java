@@ -15,16 +15,16 @@ import java.util.List;
 public interface PersonMapper {
 
     @Select("select * from person where name = #{name}")
-    Person findByName(String name);
+    List<Person> selectByName(String name);
 
-    @SelectProvider(type = PersonProvider.class, method = "find")
+    @SelectProvider(type = PersonProvider.class, method = "selectBy")
     @Results(value = {
             @Result(id = true, property = "id", column = "id", javaType = Long.class, jdbcType = JdbcType.BIGINT),
             @Result(property = "name", column = "name", javaType = String.class, jdbcType = JdbcType.NVARCHAR),
             @Result(property = "age", column = "age", javaType = Integer.class, jdbcType = JdbcType.INTEGER),
             @Result(property = "sex", column = "sex", javaType = Integer.class, jdbcType = JdbcType.INTEGER)
     })
-    List<Person> find(Person p);
+    List<Person> selectBy(Person p);
 
     Person selectById(@Param("id") long id);
 
@@ -39,4 +39,5 @@ public interface PersonMapper {
     @Insert("insert into person(name, age, sex) values (#{name}, #{age}, #{sex})")
     @Options(useGeneratedKeys = true)
     void insert(Person p);
+
 }

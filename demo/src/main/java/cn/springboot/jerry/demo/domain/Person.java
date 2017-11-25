@@ -1,10 +1,12 @@
 package cn.springboot.jerry.demo.domain;
 
+import java.io.Serializable;
+
 /**
  * @author zhoujx
  * @date 2017-11-20 13:48
  */
-public class Person {
+public class Person implements Serializable {
 
     private Long id;
     private String name;

@@ -10,7 +10,7 @@ import org.apache.ibatis.jdbc.SQL;
  */
 public class PersonProvider {
 
-    public String find(final Person p) {
+    public String selectBy(final Person p) {
         return new SQL() {
             {
                 SELECT("id, name, age, sex");

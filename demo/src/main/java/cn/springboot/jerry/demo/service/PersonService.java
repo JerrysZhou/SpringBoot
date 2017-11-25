@@ -12,15 +12,18 @@ public interface PersonService  {
 
     void insert(Person p);
 
-    Person selectByName(String name);
+    void inserts(List<Person> persons);
 
-    List<Person> find(Person param);
+    List<Person> getBy(String name);
 
-    Person selectById(long id);
+    List<Person> getBy(Person param);
 
-    List<Person> selectAll();
+    Person getById(long id);
+
+    List<Person> getAll();
 
     void delete(long id);
 
     void update(Person p);
+
 }

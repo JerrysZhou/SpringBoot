@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,17 +32,14 @@ public class PersonController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Result getById(@PathVariable("id") long id) {
-        final Person p = service.selectById(id);
+        final Person p = service.getById(id);
         return Result.successGet(p);
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public Result list(@RequestParam(value = "name", required = false) String name,
-                       @RequestParam(value = "age", required = false) Integer age,
-                       @RequestParam(value = "sex", required = false) Integer sex) {
-        log.info("List Req Param: name=" + name + ",age=" + age + ",sex=" + sex);
-        final Person p = new Person(name, sex, age);
-        final List<Person> data = service.find(p);
+    public Result list(@RequestParam(value = "name", required = false) String name) {
+        log.info("List Req Param: name=" + name);
+        final List<Person> data = service.getBy(name);
         return Result.successGet(data);
     }
 
@@ -53,13 +51,25 @@ public class PersonController {
 //        return "Hello," + "," + p.toString();
     }
 
+    @RequestMapping(value = "/add/{count}", method = RequestMethod.GET)
+    public Result add(@PathVariable("count") int count) {
+        final List<Person> persons = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            int sex = i % 2;
+            final Person p = new Person(String.format("张三李四王二%s", i), sex, i);
+            persons.add(p);
+        }
+        service.inserts(persons);
+        return Result.successPost(String.format("success batchAdd! Count : %s !", count));
+    }
+
     @RequestMapping(value = "", method = RequestMethod.PUT)
     public Result update(@RequestBody Person p) {
         if (p.getId() == null) {
             return Result.invalidParam("id = null");
         }
         final Long id = p.getId();
-        final Person oldPerson = service.selectById(id);
+        final Person oldPerson = service.getById(id);
         if (oldPerson == null) {
             return Result.invalidParam(String.format("person id = %s is not exists!", id));
         }
@@ -71,7 +81,7 @@ public class PersonController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public Result delete(@PathVariable("id") long id) {
-        final Person p = service.selectById(id);
+        final Person p = service.getById(id);
         if (p == null) {
             return Result.invalidParam(String.format("person id = %s is not exists!", id));
         }
