@@ -33,8 +33,11 @@ public class PersonCacheServiceImpl extends RedisService implements PersonCacheS
     }
 
     @Override
-    public List<Person> getBy(String name) {
-        final List<String> cache = range(name, 0, -1);
+    public List<Person> getBy(String name, int pageNum, int pageSize) {
+        final int end = pageEnd(pageNum, pageSize);
+        final int begin = pageBegin(pageNum, pageSize);
+
+        final List<String> cache = range(name, begin, end);
         if (ListEx.isEmpty(cache)) {
             return ListEx.emptyList();
         }

@@ -6,6 +6,7 @@ import cn.springboot.jerry.demo.mapper.PersonMapper;
 import cn.springboot.jerry.demo.service.PersonService;
 import cn.springboot.jerry.demo.utils.ListEx;
 import cn.springboot.jerry.demo.utils.StrEx;
+import com.github.pagehelper.PageHelper;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -72,14 +73,16 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Person> getBy(String name) {
+    public List<Person> getBy(String name, int pageNum, int pageSize) {
+        pageNum = Math.max(1, pageNum);
         if (StrEx.isEmpty(name)) {
-            return mapper.selectAll();
+            return getAll(pageNum, pageSize);
         }
-        final List<Person> cache = cacheService.getBy(name);
+        final List<Person> cache = cacheService.getBy(name, pageNum, pageSize);
         if (ListEx.notEmpty(cache)) {
             return cache;
         }
+        PageHelper.startPage(pageNum, pageSize);
         final List<Person> persons = mapper.selectByName(name);
         cacheService.put(name, persons);
         return persons;
@@ -87,6 +90,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Person> getBy(Person p) {
+        PageHelper.startPage(1, 10);
         return mapper.selectBy(p);
     }
 
@@ -96,7 +100,8 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Person> getAll() {
+    public List<Person> getAll(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         return mapper.selectAll();
     }
 

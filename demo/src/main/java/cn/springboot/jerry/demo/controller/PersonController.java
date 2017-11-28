@@ -17,7 +17,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/persons")
-public class PersonController {
+public class PersonController extends BaseController {
 
     private final PersonService service;
     @Value(value = "${jerry.msg}")
@@ -37,9 +37,11 @@ public class PersonController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public Result list(@RequestParam(value = "name", required = false) String name) {
-        log.info("List Req Param: name=" + name);
-        final List<Person> data = service.getBy(name);
+    public Result list(@RequestParam(value = "name", required = false) String name,
+                       @RequestParam(value = "pageNum", required = false) Integer pageNum) {
+        log.info("List Req Param: name=" + name + ", pageNum=" + pageNum);
+        pageNum = pageNum == null ? 1 : pageNum;
+        final List<Person> data = service.getBy(name, pageNum, pager.pageSize);
         return Result.successGet(data);
     }
 

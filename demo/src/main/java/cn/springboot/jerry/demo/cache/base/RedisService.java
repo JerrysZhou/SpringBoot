@@ -36,6 +36,16 @@ public class RedisService {
         return stringRedisTemplate.opsForList().rightPush(name, value);
     }
 
+    public int pageBegin(int pageNum, int pageSize) {
+        pageNum = Math.max(1, pageNum);
+        return (pageNum - 1) * pageSize;
+    }
+
+    public int pageEnd(int pageNum, int pageSize) {
+        pageNum = Math.max(1, pageNum);
+        return pageNum * pageSize - 1;
+    }
+
     /**
      * 根据指定key获取String
      *

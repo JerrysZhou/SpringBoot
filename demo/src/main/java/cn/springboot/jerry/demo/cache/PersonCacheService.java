@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface PersonCacheService {
 
-    List<Person> getBy(String name);
+    List<Person> getBy(String name, int pageNum, int pageSize);
 
     Long put(String name, List<Person> p);
 
